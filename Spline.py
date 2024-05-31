@@ -10,10 +10,7 @@ path = osp.join(osp.dirname(osp.realpath(__file__)), '..', 'data', dataset)
 dataset = Planetoid(path, dataset, transform=T.NormalizeFeatures())
 data = dataset[0]
 
-# Add edge_attr if it's not present
 if not hasattr(data, 'edge_attr') or data.edge_attr is None:
-    # Initialize edge_attr with random values for the sake of example
-    # Typically, edge_attr should represent some meaningful properties of edges
     data.edge_attr = torch.rand((data.edge_index.size(1), 2))
 
 class Net(torch.nn.Module):
