@@ -16,8 +16,8 @@ if not hasattr(data, 'edge_attr') or data.edge_attr is None:
 class Net(torch.nn.Module):
     def __init__(self):
         super().__init__()
-        self.conv1 = SplineConv(dataset.num_features, 16, dim=2, kernel_size=5)
-        self.conv2 = SplineConv(16, dataset.num_classes, dim=2, kernel_size=5)
+        self.conv1 = SplineConv(dataset.num_features, 16, dim=2, kernel_size=5,aggr='mean')
+        self.conv2 = SplineConv(16, dataset.num_classes, dim=2, kernel_size=5,aggr='mean')
 
     def forward(self):
         x, edge_index, edge_attr = data.x, data.edge_index, data.edge_attr
